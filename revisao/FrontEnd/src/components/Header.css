@@ -1,0 +1,12 @@
+.divHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 90%;
+    color: tomato;
+    border-radius: 50px;
+    background-color: #f8f9fa9d;
+    box-shadow: 0 3px 10px rgba(224, 5, 5, 0.377);
+
+}
