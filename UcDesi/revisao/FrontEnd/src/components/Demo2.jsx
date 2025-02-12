@@ -13,7 +13,7 @@ function Demo2() {
 
         <button className='btnCaunt1' onClick={() => {setValor(valor + 1)}}>Plus</button>
         <button className='btnCaunt2' onClick={() => {setValor(valor - 1)}}>Moins</button>
-        <button className='btnCaunt3' onClick={() => {setValor(0)}}>Reset</button>
+        <button className='btnCaunt3' onClick={() => {setValor(0),setUsuario(null)}}>Reset</button>
         <button className='btnCaunt4' onClick={() => {setUsuario(prompt("Username: "))}}>Usuario</button>
          
 
