@@ -1,14 +1,22 @@
 
 import './App.css'
+import Body from './components/Body'
 import Header from './components/Header'
+
 
 function App() {
   
 
   return (
-    <div className='div1'>
+    <div className='container-app'>
 
-        <Header/>
+    <div className='container-header'>
+
+      <Header />
+    </div>
+      <Body />
+
+        
 
     </div>
   )
