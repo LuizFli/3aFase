@@ -1,25 +1,50 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
+import { useState } from 'react'
+import './Jogo.css'
 
 function Jogo() {
-    
-    const [figures, setFigures] = useState()
+
+    const [figures, setFigures] = useState("./image/0.svg")
+    const [images, setImages] = useState([])
 
 
     function rodarCubo() {
 
-        let image = Math.floor(Math.random() * 27) +1
+        let image = Math.floor(Math.random() * 27) + 1;
+        const newFigure = "./image/" + image + ".svg";
+    
+        setFigures(newFigure);
+        setImages(prevImages => [...prevImages, newFigure])
         
-        setFigures(image+".png")
-        
-     }
+
+    }
+    return (
+
+        <div className='container-jogo'>
+            <div className='div-p'>
+                <p>Clique no incone para gerar outra aleatória!</p>
+
+            </div>
+            <div className='div-img'>
+
+                <img className='imagens' src={figures} alt="" onClick={rodarCubo} />
+
+
+            </div>
+            <div className='map'>
+                {
+                    images.map((figures, i) => {
+                        return (
+                            <img key={i} className='im' src={figures} alt="" />
+                        )
+                    })
+                }
 
 
 
-  return (
-    <div className='container-jogo'>
-      <img src={figures} alt=""  onClick={rodarCubo} />
-    </div>
-  )
+            </div>
+        </div>
+    )
 }
 
 export default Jogo
