@@ -43,6 +43,11 @@ function Jogo() {
 
 
             </div>
+            <div className='footer'>
+
+                <button className='btn' onClick={() => {setFigures("./image/0.svg"),setImages([])}}>Reset</button>
+
+            </div>
         </div>
     )
 }
