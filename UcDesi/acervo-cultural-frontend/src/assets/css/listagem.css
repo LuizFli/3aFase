@@ -1,0 +1,11 @@
+.listagem{
+    padding-bottom: 20px;
+}
+.listagem table, .listagem th, .listagem td{
+    border: 1px solid blue;
+    border-collapse: collapse;
+}
+.tabela-filmes{
+    color: black;
+    min-width: 70%;
+}
