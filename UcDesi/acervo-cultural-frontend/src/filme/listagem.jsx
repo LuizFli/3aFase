@@ -9,7 +9,8 @@ const Listagem = props => {
     // }
     return (
         <>
-            {filmes.length > 0 &&
+            {(!filmes || filmes.length <= 0) && <span> Nenhum Filme Cadastrado.</span>}
+            {(filmes && filmes.length > 0) &&
                 <div className='listagem'>
                     <table className='tabela-filmes'>
                         <thead>
@@ -31,9 +32,7 @@ const Listagem = props => {
                     </table>
                 </div>
             }
-            {filmes.length <= 0 &&
-            
-                <span> Nenhum Filme Cadastrado.</span>}
+
         </>
     )
 }

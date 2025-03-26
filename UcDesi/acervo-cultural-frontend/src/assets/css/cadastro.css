@@ -1,0 +1,46 @@
+.botoes{
+
+    margin-top: 20px;
+}
+.botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    width: 90%;
+    gap: 10px;
+    
+}
+
+.input-formulario {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.formulario{
+    width: 90%;
+}
+.campo-formulario{
+    margin-top: 20px;
+}
+.botao-formulario {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+
+}
+.botao-formulario:hover{
+    background-color: white;
+    color: blue;
+    transition: 0.1s;
+    box-shadow: inset 0 0 5px 3px blue;
+
+
+}
