@@ -1,0 +1,24 @@
+get http://localhost:3000/usuario
+
+### Referencias
+POST http://localhost:3000/usuario
+Content-Type: application/json
+
+{
+    "id": "1",
+    "nome": "Marcos",
+    "cpf": "123.456.789-00",
+    "endereco": "Rua das Flores, 123"
+}
+
+### Referencias
+PUT http://localhost:3000/usuario
+Content-Type: application/json
+
+{
+    "id": "2"
+}
+###
+DELETE  http://localhost:3000/usuario/1
+
+
