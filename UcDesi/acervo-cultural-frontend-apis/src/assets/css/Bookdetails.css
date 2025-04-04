@@ -1,0 +1,31 @@
+.book-details {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .book-details img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .book-details h1 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .book-details h2 {
+    font-size: 18px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .book-details p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
