@@ -91,7 +91,6 @@ const nomeCorredores = ["João", "Marcos", "Maria", "Bruno", "Heitor", "Joaquina
 
 // const nomeCorredores = ["João", "Marcos", "Maria", "Bruno", "Heitor", "Joaquina"];
 const medalhas = ["ouro", "prata", "bronze", "Sem Medalha"];
-let i = 0;
 const resultado2 = nomeCorredores.map((Corredor,index) => {
 
     return {
@@ -99,9 +98,6 @@ const resultado2 = nomeCorredores.map((Corredor,index) => {
         Medalha: index <=2 ? medalhas[index] : medalhas[3],
         Posição: index + 1
     }
-
-    
-
 });
 console.log("Resultado 2) : ", resultado2);
 
