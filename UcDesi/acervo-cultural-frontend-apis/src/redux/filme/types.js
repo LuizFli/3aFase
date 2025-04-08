@@ -1,0 +1,8 @@
+export const ARMAZENAR_FILMES = 'ARMAZENAR_FILMES';
+export const SETAR_FILME_ATUAL = 'SETAR_FILME_ATUAL';
+
+/* Redux Saga */
+export const BUSCAR_FILMES = 'BUSCAR_FILMES';
+export const BUSCAR_FILME_POR_ID = 'BUSCAR_FILME_POR_ID';
+export const EXCLUIR_FILME = 'EXCLUIR_FILME';
+/* */
