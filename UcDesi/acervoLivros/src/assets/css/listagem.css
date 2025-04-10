@@ -8,6 +8,7 @@
     padding: 5px;
 }
 
+
 .tabela-livros{
     color: black;
     width: 90%;
@@ -21,9 +22,7 @@
     padding: 10px 20px;
     cursor: pointer;
 
-}
-
-.botao-td:hover{
+}.botao-td:hover{
     background-color: white;
     color: goldenrod;
     transition: 0.1s;

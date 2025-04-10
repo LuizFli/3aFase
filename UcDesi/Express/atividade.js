@@ -15,19 +15,21 @@ const principal = callback => {
 
     callback(aluno)
 }
+//-----------
 const nomeAluno = () => {
     console.log(`O nome do aluno : ${aluno.nome}`)
     
 }
+//---------
 const disciplinaAluno = () => {
     console.log(`A Diciplina do aluno : ${aluno.disciplina}`)
     
 }
+//------------
 const idadeAluno = () => {
     console.log(`A idade do aluno : ${aluno.idade}`)
     
 }
-
 
 principal(nomeAluno)
 principal(disciplinaAluno)

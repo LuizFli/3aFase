@@ -7,7 +7,6 @@ import { buscarLivros } from "../services/livros";
 import { atualizarLivros } from "../services/livros";
 import { inserirLivros } from "../services/livros";
 import { excluirLivros } from "../services/livros";
-
 import { livros as listaLivros } from "../util/constantes";
 
 const LIVRO_INICIAL = { title: '', author: '', publisher: '' }
@@ -23,10 +22,10 @@ const PaginaLivros = props => {
 
     }
     const salvarLivro = async livroASalvar => {
-        console.log(livroASalvar)
+        console.log('Livro a Salvar',livroASalvar)
         if (livroASalvar.id) {
 
-            await atualizarLivros(livro)
+            await atualizarLivros(livroASalvar)
             carregarLivros()
             return
         }
@@ -65,10 +64,7 @@ const PaginaLivros = props => {
         <Secao
             titulo="Listagem de Livros"
             children={
-
-
                 <Listagem livros={livros} editar={editarLivros} excluir={apagarLivros} />
-
             } />
     </EstruturaPagina>
 }
