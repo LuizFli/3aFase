@@ -25,7 +25,9 @@ const PaginaLivros = props => {
         console.log('Livro a Salvar',livroASalvar)
         if (livroASalvar.id) {
 
-            await atualizarLivros(livroASalvar)
+            await atualizarLivros(livroASalvar).catch(err => {
+                console.log(err)
+             })
             carregarLivros()
             return
         }
