@@ -6,19 +6,19 @@ const NotificacaoService = require('../classes/NotificacaoService');
 
 // import {PedidoService} from '../classes/PedidoService'
 
-describe('PedidoService', () => {
-  it('pedido realizado com susseço!',() => {
+describe('Testes de PedidoService', () => {
+      
+  it('Fechar Pedido com susseço!',() => {
     //GIVEN
-    let pagamentoService = new PagamentoService();
-    let notificacaoService = new NotificacaoService();
-
+    const pagamentoService = new PagamentoService();
     const mockPagamento = jest.spyOn(pagamentoService, "processarPagamento").mockReturnValue(true);
 
+    const notificacaoService = new NotificacaoService();
     const mockNotificacao = jest.spyOn(notificacaoService,"enviarNotificacao");
 
-    let pedidoService = new PedidoService(pagamentoService,notificacaoService);
+    const pedidoService = new PedidoService(pagamentoService,notificacaoService);
     
-    let pedidoDummy = {"pedido": 1}
+    let pedidoDummy = {pedido: 1}
 
     //WHEN
     const resultado = pedidoService.fecharPedido(pedidoDummy)
@@ -26,31 +26,28 @@ describe('PedidoService', () => {
     //THEN
 
     expect(resultado).toBeTruthy()
-    expect(mockNotificacao).toHaveBeenCalled()
+    expect(mockPagamento).toHaveBeenCalled()
+    expect(mockNotificacao).toHaveBeenCalledWith(pedidoDummy)
     
     
   })
-  it('pedido realizado com Falha!',() => {
+  it('Fechar Pedido com Falha!',() => {
     //GIVEN
-    let pagamentoService = new PagamentoService();
-    let notificacaoService = new NotificacaoService();
-
+    const pagamentoService = new PagamentoService();
     const mockPagamento = jest.spyOn(pagamentoService, "processarPagamento").mockReturnValue(false);
 
+    const notificacaoService = new NotificacaoService();
     const mockNotificacao = jest.spyOn(notificacaoService,"enviarNotificacao");
-
-    let pedidoService = new PedidoService(pagamentoService,notificacaoService);
     
-    let pedido = {"id": 1}
-
     //WHEN
-    
 
+    const pedidoService = new PedidoService(pagamentoService,notificacaoService);
+    const pedido = {id: 1}
+
+    //THEN
     expect(() => {
       pedidoService.fecharPedido(pedido)
     }).toThrow(`Pedido ${pedido.id} não pôde ser fechado. Pagamento inválido.`)
-
-    //THEN
     expect(mockPagamento).toHaveBeenCalled()
     expect(mockNotificacao).not.toHaveBeenCalled()
     
