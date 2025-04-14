@@ -1,13 +1,16 @@
 const AddressProvider = require('./AddressProvider');
 
 class AddressService {
+    constructor(enderecoProvider){
+        this.provider = enderecoProvider
+    }
     // Método para obter um endereço a partir de um CEP
-    static obterEndereco(cep) {
+    obterEndereco(cep) {
         if (!/^\d{8}$/.test(cep)) {
             throw new Error("CEP inválido! Deve conter 8 dígitos numéricos.");
         }
 
-        return EnderecoProvider.buscarEnderecoPorCEP(cep);
+        return this.provider.buscarEnderecoPorCEP(cep);
     }
 }
 

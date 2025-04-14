@@ -2,7 +2,7 @@ const https = require('https');
 const Address = require("../models/Address")
 
 class EnderecoProvider {
-    static buscarEnderecoPorCEP(cep) {
+    buscarEnderecoPorCEP(cep) {
         return new Promise((resolve, reject) => {
             const url = `https://viacep.com.br/ws/${cep}/json/`;
 
