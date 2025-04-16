@@ -118,7 +118,56 @@ const pagarComCripto = (pedido) => {
 
 //CORREÇÂO PROFESSOR --------------------
 
+const filtrarPedidos = (pedidos) => {
+    return pedidos.filter(pedido => pedido.valor > 100)
+}
 
+const processaTipoPagamento = (tipo) => {
+    switch (tipo) {
+        case "cartao":
+            return pagarComCartao;
+        case "pix":
+            return pagarComPix;
+        case "dinheiro":
+            return pagarComBoleto;
+        case "cripto":
+            return pagarComCripto;
+        default:
+            break;
+    }
+
+}
+
+const processaPedidos = (pedidos) => {
+    return pedidos.map(pedido => {
+        const callback = processaTipoPagamento(pedido.tipo);
+
+        return {
+            ...pedido,
+            callback
+        };
+    })
+}
+
+const finalizaPedidos = (pedidos) => {
+    pedidos.forEach(pedido => {
+        pedido.callback(pedido);
+    })
+}
+function processaOsPedidos(pedidos){
+
+    const pedidosFiltrados = filtrarPedidos(pedidos);
+    
+    const pedidosProcessados = processaPedidos(pedidosFiltrados);
+    
+    finalizaPedidos(pedidosProcessados)
+}
+
+processaOsPedidos(pedidos)
+
+console.log("pedidos", pedidos);
+
+// console.log("processado", pedidosProcessados)
 
 
 
