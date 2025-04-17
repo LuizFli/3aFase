@@ -1,6 +1,7 @@
 import React from 'react'
 import '../assets/css/listagem.css'
 import { useState } from 'react'
+import { Table, TableBody, TableContainer, TableHead } from '@mui/material'
 
 
 
@@ -23,14 +24,14 @@ const Listagem = props => {
                 {(condicional == true && livros && livros.length > 0) && 
 
                 <div className="listagem">
-                    <table className="tabela-livros">
+                    <TableContainer>
                         <thead>
-                            <tr>
+                            <th>
                                 <th>Título</th>
                                 <th>Autor</th>
                                 <th>Editora</th>
                                 <th className='acoes' colSpan={2}>Acões</th>
-                            </tr>
+                            </th>
                         </thead>
                         <tbody>
                             {livros.map(livro => (
@@ -44,7 +45,8 @@ const Listagem = props => {
                                 </tr>
                             ))} 
                         </tbody>
-                    </table>
+                    
+                    </TableContainer>
 
                 </div>
                         

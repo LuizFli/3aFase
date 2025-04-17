@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const TextInput = props => {
 
-    const { label, handleChange } = props;
+    const { label, handleChange,handleBlur } = props;
     const [valor, setValor] = useState()
 
     return (
@@ -12,8 +12,10 @@ const TextInput = props => {
                 <label>{label}</label>
                 <input type="text"
                     className='input-formulario'
-                    value={valor} onChange={(e) =>
-                    setValor(e.target.value)} />
+                    value={valor}
+                    onChange={handleChange} 
+                    onBlur={handleBlur}
+                    />
 
             </div>
 

@@ -5,18 +5,15 @@ const TextInput = props => {
     
 
     return (
-        <>
-            <div className='campo-formulario'>
+        <>       
                 <label>{label}</label>
                 <input type="text"
                     name={name}
                     className='input-formulario'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    defaultValue={value} 
+                    value={value} 
                      />
-            </div>
-
         </>
     )
 }
