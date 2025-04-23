@@ -6,8 +6,8 @@ const produtos = [
     { nome: 'Teclado', preco: 150, disponivel: false },
     { nome: 'Monitor', preco: 500, disponivel: true }
 ];
-const resultado = produtos.filter(produto => produto.preco > 100 && produto.disponivel == true)
-                          .map(produto => {return {...produto}})
+const resultado = produtos.filter(({preco, disponivel}) => preco > 100 && disponivel )
+                          
 console.log(resultado)
 // Resultado esperado:
 // [

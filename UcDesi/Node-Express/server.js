@@ -68,6 +68,7 @@ function criarUsuario(userName) {
 
 }
 
-servidor.listen({
-    port: 3000
+servidor.listen(3000, () =>{
+    console.log(`Servidor rodando na porta 3000`)
+    
 })

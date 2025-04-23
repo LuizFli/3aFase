@@ -18,8 +18,9 @@ const funcionarios = [
     { nome: 'Marina', idade: 35, salario: 6000.99, ativo: false },
     { nome: 'Fernanda', idade: 25, salario: 3800.54, ativo: true }
 ];
-const resultado = funcionarios.filter(funcionario => funcionario.ativo == true)
+const resultado = funcionarios.filter(funcionario => funcionario.ativo)
             .map(funcionario =>  ({...funcionario,salario: funcionario.salario * 1.1}));
+            
             resultado.forEach(({ nome, salario }) => {console.log(`Parabéns, ${nome} Seu novo salário com bônus é R$${(salario).toFixed(2)}`)});
             const totalSalarios = resultado.reduce((total, funcionario) => {
                 return total + funcionario.salario;
