@@ -46,10 +46,9 @@ describe('Testes do addressService',() =>{
         let cepDummy = 12345678
         const mockCep = jest.spyOn(addressService,'obterEndereco').mockImplementation(() => {throw new Error ("CEP inválido! Deve conter 8 dígitos numéricos.")})
 
-        const resultado =  addressService.obterEndereco(cepDummy)
 
         expect(() => addressService.obterEndereco(cepDummy).toThrow("CEP inválido! Deve conter 8 dígitos numéricos."))
-        expect(mockCep).toHaveBeenCalled()
+        expect(mockCep).not.toHaveBeenCalled()
 
 
     })

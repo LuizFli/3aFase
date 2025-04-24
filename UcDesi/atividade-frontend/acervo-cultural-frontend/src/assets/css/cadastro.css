@@ -1,0 +1,22 @@
+.botoes {
+    text-align: end;
+    margin-right: 5px;
+    margin-top: 20px;
+}
+
+.botao-formulario {
+    margin-left: 19px;
+}
+
+.formulario {
+    width: 90%;
+}
+
+.campo-formulario {
+    margin-bottom: 10px;
+}
+
+.input-formulario {
+    margin-top: 2px;
+    min-width: 50%;
+}

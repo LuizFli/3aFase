@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AcervoCulturalApplication<acervo-cultural>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sc.senai.aulas.acervo.AcervoCulturalApplication",
+            "projectName": "acervo-cultural",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
