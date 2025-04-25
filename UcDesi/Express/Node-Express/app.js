@@ -1,4 +1,5 @@
 import express from 'express';
+
 let items = [
     { id: 1, nome: 'Arroz', marca: 'Tio João', preco: '6.39' },
     { id: 2, nome: 'Feijão', marca: 'Camil', preco: '8.99' },
@@ -37,4 +38,6 @@ app.delete('/items', (req, res) => {
         mensagem: "Dado Deletado Com sucesso!"
     })
 })
-app.listen(3000, 'Servidor Rodando na porta 3000')
+app.listen(3000, () => {
+    console.log("Servidor rodando na porta 3000");
+  });
