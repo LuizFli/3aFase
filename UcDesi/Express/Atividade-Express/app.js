@@ -3,11 +3,11 @@ import express from 'express'
 const app = express()
 app.use(express.json())
 
-const alunos = [
+const alunos = [];
 
-];
-
-
+app.get('/alunos', (req,res) =>{
+  res.json(alunos)
+})
 app.post('/alunos', (req, res) => {
   const { nome, matricula, status } = req.body
   if (!nome || !matricula) {
@@ -25,16 +25,15 @@ app.post('/alunos', (req, res) => {
   if (alunos.length > 0) {
 
     console.log('if Rodado')
-    const verificaMatricula = alunos.filter((aluno) => aluno.matricula === alunos.matricula)
-    if (verificaMatricula) {
+    const verificaMatricula = alunos.filter((aluno) => aluno.matricula === matricula)
+    console.log(verificaMatricula)
+    if (verificaMatricula.length > 0) {
       return res.status(400).json({
         mensagem: 'Matrícula já cadastrada',
         matricula: matricula
       });
     }
-
   }
-
   alunos.push({
     nome,
     matricula,
