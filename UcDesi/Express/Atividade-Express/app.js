@@ -44,23 +44,6 @@ app.get('/alunos', (req, res) => {
   }
   res.status(200).json(alunos)
 })
-//Get apenas o aluno com a matricula correspondente---------------------------------------------------
-app.get('/alunos/:matricula', (req, res) => {
-  const { matricula } = req.params
-  const alunoIndex = alunos.findIndex(aluno => aluno.matricula === matricula)
-  if (alunoIndex == -1) {
-    return res.status(404).json({
-      mensagem: `Aluno não encontrado.`
-    });
-  };
-  let { media, situacao } = mediaAluno(alunos[alunoIndex])
-  const alunoFormatado = {
-    ...alunos[alunoIndex],
-    media,
-    situacao
-  }
-  res.status(200).json(alunoFormatado)
-})
 
 // GET TODOS ALUNOS ----------------------------------------------------------------------------------
 app.get('/alunos/notas', (req, res) => {
@@ -85,6 +68,25 @@ app.get('/alunos/notas', (req, res) => {
     body: aprensentaAlunos
   })
 })
+//Get apenas o aluno com a matricula correspondente---------------------------------------------------
+app.get('/alunos/:matricula', (req, res) => {
+  const { matricula } = req.params
+  const alunoIndex = alunos.findIndex(aluno => aluno.matricula === matricula)
+  if (alunoIndex == -1) {
+    return res.status(404).json({
+      mensagem: `Aluno não encontrado.`
+    });
+  };
+  let { media, situacao } = mediaAluno(alunos[alunoIndex])
+  const alunoFormatado = {
+    ...alunos[alunoIndex],
+    media,
+    situacao
+  }
+  res.status(200).json(alunoFormatado)
+})
+
+
 // CRIAR CADASTRO --------------------------------------------------------------------------------------
 app.post('/alunos', (req, res) => {
   const { nome, matricula, status } = req.body
@@ -154,14 +156,14 @@ app.post('/alunos/:matricula/notas', (req, res) => {
     })
   }
   const alunoIndex = alunos.findIndex(aluno => aluno.matricula === matricula)
-  if (alunos[alunoIndex].status === 'inativo') {
-    return res.status(403).json({
-      mensagem: `Não é possível cadastrar notas para alunos inativos.`
-    })
-  }
   if (alunoIndex === -1) {
     return res.status(404).json({
       mensagem: `Aluno não encontrado.`
+    })
+  }
+  if (alunos[alunoIndex].status === 'inativo') {
+    return res.status(403).json({
+      mensagem: `Não é possível cadastrar notas para alunos inativos.`
     })
   }
   notas.forEach(nota => {
@@ -173,7 +175,6 @@ app.post('/alunos/:matricula/notas', (req, res) => {
   })
   alunos[alunoIndex].notas = notas
   alunos[alunoIndex].dataAlteracao = new Date()
-
 
   return res.status(200).json({
     mensagem: `Notas Inseridas corretamente ${notas}`,
