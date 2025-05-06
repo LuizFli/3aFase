@@ -1,10 +1,10 @@
 import express from 'express'
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
 const alunos = [];
-
+//função Para caucular a media e retornar media e a situação de aprovado ou reprovado em um objeto-------------------------
 const mediaAluno = (aluno) => {
 
   let notasAluno = aluno.notas
@@ -13,19 +13,19 @@ const mediaAluno = (aluno) => {
   }, 0);
   let media = SomaNotasAluno / notasAluno.length
   let situacao = ''
-  
+
   if (media >= 7 && media <= 10) {
-     situacao = 'aprovado'
+    situacao = 'aprovado'
   }
   if (media >= 0 && media < 7) {
-     situacao = 'reprovado'
+    situacao = 'reprovado'
   }
-  return{
+  return {
     media,
     situacao
   }
 }
-
+// GET alunos pode ser todos os alunos ou colocando ?status=ativo ou inativo faz uma busca pelos mesmos----------------------------
 app.get('/alunos', (req, res) => {
   const status = req.query.status
   if (alunos.length < 1) {
@@ -44,8 +44,25 @@ app.get('/alunos', (req, res) => {
   }
   res.status(200).json(alunos)
 })
+//Get apenas o aluno com a matricula correspondente---------------------------------------------------
+app.get('/alunos/:matricula', (req, res) => {
+  const { matricula } = req.params
+  const alunoIndex = alunos.findIndex(aluno => aluno.matricula === matricula)
+  if (alunoIndex == -1) {
+    return res.status(404).json({
+      mensagem: `Aluno não encontrado.`
+    });
+  };
+  let { media, situacao } = mediaAluno(alunos[alunoIndex])
+  const alunoFormatado = {
+    ...alunos[alunoIndex],
+    media,
+    situacao
+  }
+  res.status(200).json(alunoFormatado)
+})
 
-// GET TODOS ALUNOS -----------------------------
+// GET TODOS ALUNOS ----------------------------------------------------------------------------------
 app.get('/alunos/notas', (req, res) => {
   if (alunos.length < 1) {
     return res.status(400).json({
@@ -54,11 +71,11 @@ app.get('/alunos/notas', (req, res) => {
   }
   const alunosVerificados = alunos.filter(aluno => aluno.status === 'ativo' && aluno.notas !== null)
   const aprensentaAlunos = alunosVerificados.map((aluno) => {
-    let {media, situacao} = mediaAluno(aluno)
+    let { media, situacao } = mediaAluno(aluno)
     return {
-      nome:aluno.nome,
-      matricula:aluno.matricula,
-      notas:aluno.notas,
+      nome: aluno.nome,
+      matricula: aluno.matricula,
+      notas: aluno.notas,
       media,
       situacao
     }
@@ -68,7 +85,7 @@ app.get('/alunos/notas', (req, res) => {
     body: aprensentaAlunos
   })
 })
-// CRIAR CADASTRO -----------------------------
+// CRIAR CADASTRO --------------------------------------------------------------------------------------
 app.post('/alunos', (req, res) => {
   const { nome, matricula, status } = req.body
   if (!matricula) {
@@ -107,8 +124,8 @@ app.post('/alunos', (req, res) => {
       });
     }
   }
-  let dataCriacao = new Date()
-  let dataAlteracao = new Date()
+  let dataCriacao = new Date();
+  let dataAlteracao = new Date();
   alunos.push({
     nome,
     matricula,
@@ -119,9 +136,9 @@ app.post('/alunos', (req, res) => {
   res.status(201).json({
     mensagem: 'Aluno cadastrado com sucesso.',
     body: { nome, matricula, status }
-  })
-})
-// INSERIR NOTAS -----------------------------------------------
+  });
+});
+// INSERIR NOTAS -------------------------------------------------------------------------------------------------
 app.post('/alunos/:matricula/notas', (req, res) => {
   const { notas } = req.body
   const { matricula } = req.params
@@ -164,24 +181,24 @@ app.post('/alunos/:matricula/notas', (req, res) => {
       matricula,
       notas
     }
-  })
+  });
 
-})
-//DELETE ---------------------------------------------------
+});
+//DELETE ---------------------------------------------------------------------------------------------------------------
 app.delete('/alunos/:matricula', (req, res) => {
   const matricula = req.params.matricula
-  const index = alunos.findIndex(aluno => aluno.matricula === matricula)
-  if (index == -1) {
+  const alunoIndex = alunos.findIndex(aluno => aluno.matricula === matricula)
+  if (alunoIndex == -1) {
     return res.status(404).json({
       mensagem: `Aluno não encontrado.`
-    })
-  }
-  alunos[index].status = 'inativo'
+    });
+  };
+  alunos[alunoIndex].status = 'inativo'
 
   res.status(200).json({
     mensagem: `Aluno removido com sucesso.`
-  })
-})
+  });
+});
 
 app.listen(3000, 'localhost', () => {
   console.log("Servidor rodando em http://localhost:3000");
