@@ -11,7 +11,7 @@ const mediaAluno = (aluno) => {
   let SomaNotasAluno = notasAluno.reduce((acumulador, nota) => {
     return acumulador + nota
   }, 0);
-  let media = SomaNotasAluno / notasAluno.length
+  let media = (SomaNotasAluno / notasAluno.length).toFixed(2)
   let situacao = ''
 
   if (media >= 7 && media <= 10) {
