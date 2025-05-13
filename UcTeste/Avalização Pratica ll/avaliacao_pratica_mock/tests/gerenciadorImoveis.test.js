@@ -76,7 +76,7 @@
             mockBuscarEnderecoPorCep.mockReturnValue(null);
     
             const spyEnviarNotificacao = jest.spyOn(gerenciador, "enviarNotificacao");
-            spyEnviarNotificacao.mockImplementation(() => {});
+          
     
             const imovel = {
                 id: 3,
