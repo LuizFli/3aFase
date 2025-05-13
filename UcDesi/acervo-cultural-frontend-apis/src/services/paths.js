@@ -1,1 +1,0 @@
-export const acervoApi = process.env.REACT_APP_ACERVO_API;
